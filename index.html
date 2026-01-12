@@ -34,15 +34,14 @@ url("logo.jpg") center/cover
 section{padding:80px 40px}
 h3{font-size:36px;margin-bottom:30px;text-align:center}
 
-/* CARRUSEL 3D */
+/* CARRUSEL */
 .scene{width:100%;height:380px;display:flex;justify-content:center;perspective:1000px}
 .carousel3d{width:300px;height:320px;position:relative;transform-style:preserve-3d;transition:1s}
-.carousel3d div{position:absolute;width:300px;height:320px;background:#1a1a1a;border-radius:12px;overflow:hidden;text-align:center;padding-bottom:10px}
+.carousel3d div{position:absolute;width:300px;height:320px;background:#1a1a1a;border-radius:12px;overflow:hidden;text-align:center}
 .carousel3d img{width:100%;height:200px;object-fit:cover}
 .carousel3d small{color:#bbb}
-.carousel3d button{margin-top:5px;padding:6px 10px;border:none;background:#fff;color:#000;cursor:pointer}
+.carousel3d button{margin-top:5px;padding:6px 10px;border:none;background:#fff;color:#000}
 .controls{text-align:center;margin-top:20px}
-.controls button{background:#fff;color:#000;border:none;padding:10px 15px;margin:0 10px;cursor:pointer}
 
 /* CATALOGO */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
@@ -51,7 +50,6 @@ h3{font-size:36px;margin-bottom:30px;text-align:center}
 .card img{width:100%;height:200px;object-fit:cover}
 .card div{padding:15px;text-align:center}
 .card small{color:#bbb}
-.card button{margin-top:10px;padding:8px 12px;border:none;background:#fff;color:#000;cursor:pointer}
 
 /* CARRITO */
 #cart{
@@ -60,7 +58,6 @@ background:#111;padding:20px;transform:translateX(100%);
 transition:.4s;z-index:3000;overflow:auto
 }
 #cart.active{transform:translateX(0)}
-.cart-item{border-bottom:1px solid #333;padding:10px 0}
 
 /* BOTON REDES */
 .tiktok{
@@ -69,34 +66,39 @@ background:#fff;color:#000;padding:12px 20px;
 font-weight:700;border-radius:50px;z-index:3000
 }
 
-/* ANIMACIONES */
-.reveal{opacity:0;transform:translateY(40px);transition:.8s}
-.reveal.active{opacity:1;transform:translateY(0)}
+/* ======= RESPONSIVE FUERTE ======= */
+@media(max-width:480px){
+nav h1{font-size:16px}
+nav button{font-size:12px;padding:6px 10px}
 
-/* ===== RESPONSIVE ===== */
-@media (max-width:768px){
-nav h1{font-size:18px}
-.hero h2{font-size:36px}
-.hero p{font-size:15px}
-.hero a{padding:12px 20px;font-size:14px}
-section{padding:60px 20px}
-h3{font-size:26px}
+.hero h2{font-size:28px;letter-spacing:2px}
+.hero p{font-size:14px}
+.hero a{font-size:13px;padding:10px 18px}
 
-.scene{height:300px}
-.carousel3d{width:220px;height:260px}
-.carousel3d div{width:220px;height:260px}
-.carousel3d img{height:150px}
+section{padding:40px 15px}
+h3{font-size:22px}
+
+.scene{height:240px}
+.carousel3d{width:180px;height:220px}
+.carousel3d div{width:180px;height:220px}
+.carousel3d img{height:120px}
+.carousel3d h4{font-size:14px}
+.carousel3d small{font-size:11px}
+.carousel3d button{font-size:11px;padding:5px 8px}
 
 .grid{grid-template-columns:1fr}
-.card img{height:170px}
+.card img{height:150px}
+.card h4{font-size:15px}
+.card p{font-size:14px}
+.card small{font-size:12px}
 
 #cart{width:100%}
 
-.tiktok{bottom:15px;left:15px;padding:10px 16px;font-size:14px}
+.tiktok{font-size:12px;padding:8px 14px;bottom:10px;left:10px}
 }
 
-@media (min-width:769px) and (max-width:1024px){
-.hero h2{font-size:48px}
+@media(min-width:481px) and (max-width:1024px){
+.hero h2{font-size:42px}
 .grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
@@ -114,23 +116,23 @@ h3{font-size:26px}
 <a href="#catalogo">Ver catálogo</a>
 </div>
 
-<section class="reveal">
+<section>
 <h3>Gorras destacadas</h3>
 <div class="scene">
 <div class="carousel3d" id="carousel3d">
-<div style="transform:rotateY(0deg) translateZ(350px)">
+<div style="transform:rotateY(0deg) translateZ(300px)">
 <img src="1.jpg">
 <h4>CT Galaxy - $800</h4>
 <small>Costo de envío $200</small><br>
 <button onclick="addByName('Scream')">Agregar</button>
 </div>
-<div style="transform:rotateY(120deg) translateZ(350px)">
+<div style="transform:rotateY(120deg) translateZ(300px)">
 <img src="2.jpg">
 <h4>CT Racing - $800</h4>
 <small>Costo de envío $200</small><br>
 <button onclick="addByName('Murakami')">Agregar</button>
 </div>
-<div style="transform:rotateY(240deg) translateZ(350px)">
+<div style="transform:rotateY(240deg) translateZ(300px)">
 <img src="3.jpg">
 <h4>Three Stars - $800</h4>
 <small>Costo de envío $200</small><br>
@@ -144,7 +146,7 @@ h3{font-size:26px}
 </div>
 </section>
 
-<section id="catalogo" class="reveal">
+<section id="catalogo">
 <h3>Catálogo</h3>
 <div class="grid" id="products"></div>
 </section>
@@ -156,7 +158,7 @@ h3{font-size:26px}
 <button onclick="toggleCart()">Cerrar</button>
 </div>
 
-<a class="tiktok" href="https://www.tiktok.com/@streetv4ult?_r=1&_t=ZS-930B9bCc9sg" target="_blank">Contáctanos</a>
+<a class="tiktok" href="https://www.tiktok.com/@streetv4ult" target="_blank">Contáctanos</a>
 
 <script>
 const shipping=200;
@@ -175,7 +177,7 @@ grid.innerHTML+=`
 <div>
 <h4>${p.name}</h4>
 <p>$${p.price}</p>
-<small>Costo de envío $${shipping}</small>
+<small>Costo de envío $${shipping}</small><br>
 <button onclick="addCart(${i})">Agregar</button>
 </div>
 </div>`;
@@ -195,12 +197,12 @@ let total=0;
 cart.forEach((p,i)=>{
 total+=p.price+shipping;
 box.innerHTML+=`
-<div class="cart-item">
+<div>
 ${p.name}<br>
 Producto: $${p.price}<br>
 Envío: $${shipping}<br>
 <button onclick="removeItem(${i})">Quitar</button>
-</div>`;
+</div><hr>`;
 });
 document.getElementById("total").innerText=total;
 }
@@ -211,14 +213,6 @@ function rotate(dir){
 angle+=dir*120;
 document.getElementById("carousel3d").style.transform=`rotateY(${angle}deg)`;
 }
-
-const reveals=document.querySelectorAll(".reveal");
-window.addEventListener("scroll",()=>{
-reveals.forEach(r=>{
-if(r.getBoundingClientRect().top<window.innerHeight-100)
-r.classList.add("active");
-});
-});
 </script>
 </body>
 </html>
