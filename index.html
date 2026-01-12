@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Street Vault</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0f0f0f;color:#fff}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{
+position:fixed;top:0;width:100%;background:#111;
+display:flex;justify-content:space-between;align-items:center;
+padding:12px 20px;z-index:1000
+}
+nav h1{font-weight:900;letter-spacing:3px;font-size:22px}
+nav button{background:#fff;color:#000;border:none;padding:8px 14px;cursor:pointer}
+
+/* HERO */
+.hero{
+height:100vh;display:flex;flex-direction:column;justify-content:center;
+align-items:center;text-align:center;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
+url("logo.jpg") center/cover
+}
+.hero h2{font-size:60px;font-weight:900;letter-spacing:4px}
+.hero p{margin:20px 0;font-size:18px;color:#ccc}
+.hero a{background:#fff;color:#000;padding:15px 30px;font-weight:700}
+
+/* SECCIONES */
+section{padding:80px 40px}
+h3{font-size:36px;margin-bottom:30px;text-align:center}
+
+/* CARRUSEL 3D */
+.scene{width:100%;height:380px;display:flex;justify-content:center;perspective:1000px}
+.carousel3d{width:300px;height:320px;position:relative;transform-style:preserve-3d;transition:1s}
+.carousel3d div{position:absolute;width:300px;height:320px;background:#1a1a1a;border-radius:12px;overflow:hidden;text-align:center;padding-bottom:10px}
+.carousel3d img{width:100%;height:200px;object-fit:cover}
+.carousel3d small{color:#bbb}
+.carousel3d button{margin-top:5px;padding:6px 10px;border:none;background:#fff;color:#000;cursor:pointer}
+.controls{text-align:center;margin-top:20px}
+.controls button{background:#fff;color:#000;border:none;padding:10px 15px;margin:0 10px;cursor:pointer}
+
+/* CATALOGO */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#1a1a1a;border-radius:10px;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-10px)}
+.card img{width:100%;height:200px;object-fit:cover}
+.card div{padding:15px;text-align:center}
+.card small{color:#bbb}
+.card button{margin-top:10px;padding:8px 12px;border:none;background:#fff;color:#000;cursor:pointer}
+
+/* CARRITO */
+#cart{
+position:fixed;top:0;right:0;width:300px;height:100%;
+background:#111;padding:20px;transform:translateX(100%);
+transition:.4s;z-index:3000;overflow:auto
+}
+#cart.active{transform:translateX(0)}
+.cart-item{border-bottom:1px solid #333;padding:10px 0}
+
+/* BOTON REDES */
+.tiktok{
+position:fixed;bottom:20px;left:20px;
+background:#fff;color:#000;padding:12px 20px;
+font-weight:700;border-radius:50px;z-index:3000
+}
+
+/* ANIMACIONES */
+.reveal{opacity:0;transform:translateY(40px);transition:.8s}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+nav h1{font-size:18px}
+.hero h2{font-size:36px}
+.hero p{font-size:15px}
+.hero a{padding:12px 20px;font-size:14px}
+section{padding:60px 20px}
+h3{font-size:26px}
+
+.scene{height:300px}
+.carousel3d{width:220px;height:260px}
+.carousel3d div{width:220px;height:260px}
+.carousel3d img{height:150px}
+
+.grid{grid-template-columns:1fr}
+.card img{height:170px}
+
+#cart{width:100%}
+
+.tiktok{bottom:15px;left:15px;padding:10px 16px;font-size:14px}
+}
+
+@media (min-width:769px) and (max-width:1024px){
+.hero h2{font-size:48px}
+.grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<h1>Street Vault</h1>
+<button onclick="toggleCart()">Carrito</button>
+</nav>
+
+<div class="hero">
+<h2>STREET VAULT</h2>
+<p>Actitud. Identidad. Streetwear real.</p>
+<a href="#catalogo">Ver catálogo</a>
+</div>
+
+<section class="reveal">
+<h3>Gorras destacadas</h3>
+<div class="scene">
+<div class="carousel3d" id="carousel3d">
+<div style="transform:rotateY(0deg) translateZ(350px)">
+<img src="1.jpg">
+<h4>CT Galaxy - $800</h4>
+<small>Costo de envío $200</small><br>
+<button onclick="addByName('Scream')">Agregar</button>
+</div>
+<div style="transform:rotateY(120deg) translateZ(350px)">
+<img src="2.jpg">
+<h4>CT Racing - $800</h4>
+<small>Costo de envío $200</small><br>
+<button onclick="addByName('Murakami')">Agregar</button>
+</div>
+<div style="transform:rotateY(240deg) translateZ(350px)">
+<img src="3.jpg">
+<h4>Three Stars - $800</h4>
+<small>Costo de envío $200</small><br>
+<button onclick="addByName('Three Stars')">Agregar</button>
+</div>
+</div>
+</div>
+<div class="controls">
+<button onclick="rotate(-1)">◀</button>
+<button onclick="rotate(1)">▶</button>
+</div>
+</section>
+
+<section id="catalogo" class="reveal">
+<h3>Catálogo</h3>
+<div class="grid" id="products"></div>
+</section>
+
+<div id="cart">
+<h3>Tu carrito</h3>
+<div id="cartItems"></div>
+<h4>Total: $<span id="total">0</span></h4>
+<button onclick="toggleCart()">Cerrar</button>
+</div>
+
+<a class="tiktok" href="https://www.tiktok.com/@streetv4ult?_r=1&_t=ZS-930B9bCc9sg" target="_blank">Contáctanos</a>
+
+<script>
+const shipping=200;
+const products=[
+{name:"Scream",price:800,img:"5.jpg"},
+{name:"Murakami",price:800,img:"4.jpg"},
+{name:"Three Stars",price:800,img:"3.jpg"},
+{name:"CT Racing",price:800,img:"2.jpg"}
+];
+
+const grid=document.getElementById("products");
+products.forEach((p,i)=>{
+grid.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<div>
+<h4>${p.name}</h4>
+<p>$${p.price}</p>
+<small>Costo de envío $${shipping}</small>
+<button onclick="addCart(${i})">Agregar</button>
+</div>
+</div>`;
+});
+
+let cart=[];
+function addCart(i){cart.push(products[i]);renderCart();}
+function addByName(name){
+const prod=products.find(p=>p.name===name);
+if(prod){cart.push(prod);renderCart();}
+}
+function removeItem(i){cart.splice(i,1);renderCart();}
+function renderCart(){
+const box=document.getElementById("cartItems");
+box.innerHTML="";
+let total=0;
+cart.forEach((p,i)=>{
+total+=p.price+shipping;
+box.innerHTML+=`
+<div class="cart-item">
+${p.name}<br>
+Producto: $${p.price}<br>
+Envío: $${shipping}<br>
+<button onclick="removeItem(${i})">Quitar</button>
+</div>`;
+});
+document.getElementById("total").innerText=total;
+}
+function toggleCart(){document.getElementById("cart").classList.toggle("active");}
+
+let angle=0;
+function rotate(dir){
+angle+=dir*120;
+document.getElementById("carousel3d").style.transform=`rotateY(${angle}deg)`;
+}
+
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+reveals.forEach(r=>{
+if(r.getBoundingClientRect().top<window.innerHeight-100)
+r.classList.add("active");
+});
+});
+</script>
+</body>
+</html>
