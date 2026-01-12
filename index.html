@@ -6,6 +6,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
 <style>
+  /* ====== ARREGLO REAL PARA MOVIL ====== */
+@media (max-width: 480px){
+
+  body{overflow-x:hidden}
+
+  nav{
+    padding:8px 10px;
+  }
+  nav h1{font-size:15px}
+  nav button{font-size:11px;padding:6px 8px}
+
+  .hero h2{font-size:26px}
+  .hero p{font-size:13px}
+  .hero a{font-size:12px;padding:9px 16px}
+
+  section{padding:30px 12px}
+  h3{font-size:20px}
+
+  /* Quitar efecto 3D en celular */
+  .scene{
+    height:auto;
+    perspective:none;
+  }
+  .carousel3d{
+    width:100%;
+    height:auto;
+    transform:none !important;
+    position:static;
+  }
+  .carousel3d div{
+    position:static;
+    width:100%;
+    height:auto;
+    margin-bottom:15px;
+    transform:none !important;
+  }
+  .carousel3d img{
+    height:160px;
+  }
+  .controls{
+    display:none; /* ocultar flechas en celular */
+  }
+
+  /* Catálogo en una columna */
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .card img{height:150px}
+  .card h4{font-size:14px}
+  .card p{font-size:13px}
+  .card small{font-size:11px}
+  .card button{font-size:11px;padding:7px 10px}
+
+  /* Carrito pantalla completa */
+  #cart{
+    width:100%;
+  }
+
+  /* Botón redes más chico */
+  .tiktok{
+    font-size:11px;
+    padding:7px 12px;
+    bottom:8px;
+    left:8px;
+  }
+}
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#0f0f0f;color:#fff}
 a{text-decoration:none;color:inherit}
@@ -216,3 +283,4 @@ document.getElementById("carousel3d").style.transform=`rotateY(${angle}deg)`;
 </script>
 </body>
 </html>
+
